@@ -1,8 +1,8 @@
 {
     "actorSpecification": 1,
-    "name": "deel-jobs-search",
-    "title": "Deel Jobs Scraper & API - All Deel ATS Career Pages with Pay",
-    "description": "Deel jobs scraper and API for every company on jobs.deel.com, searched live by job title, location, remote, job type and date, newest first. 159 companies, 1,300+ open jobs, pay on a third of them. The site:jobs.deel.com dork done at the source: full descriptions, dead-link checks.",
+    "name": "lever-jobs-search",
+    "title": "Lever Jobs Scraper & API - Salary, Remote, Last 24 Hours",
+    "description": "Lever jobs scraper and API for 2,300+ companies on jobs.lever.co, searched live by job title, location, remote, job type and posting date, newest first. 73,000+ open jobs, salary with its period on a third of them, no Lever API key. The site:jobs.lever.co dork done at the source.",
     "version": "1.0",
     "buildTag": "latest",
     "categories": [
@@ -14,13 +14,13 @@
     "output": "./output_schema.json",
     "dockerfile": "../Dockerfile",
     "readme": "../README.md",
-    "minMemoryMbytes": 512,
+    "minMemoryMbytes": 1024,
     "maxMemoryMbytes": 4096,
     "storages": {
         "dataset": {
             "actorSpecification": 1,
-            "title": "Deel jobs",
-            "description": "One row per job, newest first: title, company, locations, work type, job type, department, team, pay, posting date and links; with details on, also the description, pay as numbers and country. The run summary is the OUTPUT record, not a row.",
+            "title": "Lever jobs",
+            "description": "One row per job, newest first: title, company, locations, work type, job type, department, team, pay, posting date and links; with details on, also the description, pay as numbers with its period, and the country. The run summary is the OUTPUT record, not a row.",
             "fields": {
                 "type": "object",
                 "properties": {
@@ -30,8 +30,8 @@
                             "null"
                         ],
                         "title": "Job title (title)",
-                        "description": "The job title as the company wrote it on Deel.",
-                        "example": "Business Development Associate"
+                        "description": "The job title as the company wrote it on Lever.",
+                        "example": "Data Scientist"
                     },
                     "company": {
                         "type": [
@@ -39,8 +39,8 @@
                             "null"
                         ],
                         "title": "Company name (company)",
-                        "description": "The company, as it names itself on its Deel career page.",
-                        "example": "Klarna"
+                        "description": "The company, as Lever's job feed names it.",
+                        "example": "Prima"
                     },
                     "location": {
                         "type": [
@@ -48,8 +48,8 @@
                             "null"
                         ],
                         "title": "Main location (location)",
-                        "description": "The job's main place, as the company typed it, with the country added when the text does not say it.",
-                        "example": "Vienna, Austria"
+                        "description": "The job's main place, as the company typed it on Lever. A job with no place of its own shows its country.",
+                        "example": "Turin"
                     },
                     "otherLocations": {
                         "type": [
@@ -57,9 +57,9 @@
                             "null"
                         ],
                         "title": "Other locations (otherLocations)",
-                        "description": "Every other place the job is posted for. One job can list dozens of countries.",
+                        "description": "Every other place the company listed for the job; 8.5% of jobs name more than one.",
                         "example": [
-                            "Berlin, Germany"
+                            "San Mateo, California"
                         ],
                         "items": {
                             "type": "string"
@@ -71,8 +71,8 @@
                             "null"
                         ],
                         "title": "Remote or onsite (workType)",
-                        "description": "remote, hybrid or onsite, as the company set it on Deel; when it set nothing, read from the title and location.",
-                        "example": "onsite"
+                        "description": "remote, hybrid or onsite, as the company set it on Lever (99% of jobs). Where it set none: remote when a location or the title says Remote or worldwide, hybrid when the title says Hybrid, else empty.",
+                        "example": "hybrid"
                     },
                     "employmentType": {
                         "type": [
@@ -80,7 +80,7 @@
                             "null"
                         ],
                         "title": "Job type (employmentType)",
-                        "description": "full-time, part-time, contract, intern or temporary, as the company set it.",
+                        "description": "full-time, part-time, contract, intern or temporary, read from the company's own job type words on Lever (such as Full-time, CDI or Contract: Part-Time). Empty when the words name no single type, such as Full-time or Part-time: 18% of jobs.",
                         "example": "full-time"
                     },
                     "department": {
@@ -89,8 +89,8 @@
                             "null"
                         ],
                         "title": "Hiring department (department)",
-                        "description": "The department the job is in.",
-                        "example": "Business Development"
+                        "description": "The department the job is in, as the company set it on Lever (70% of jobs).",
+                        "example": "Pricing & Underwriting"
                     },
                     "team": {
                         "type": [
@@ -98,8 +98,8 @@
                             "null"
                         ],
                         "title": "Hiring team (team)",
-                        "description": "The team the job is in.",
-                        "example": "Partnerships"
+                        "description": "The team the job is in, as the company set it on Lever.",
+                        "example": "Pricing & Underwriting Italy"
                     },
                     "salary": {
                         "type": [
@@ -107,8 +107,8 @@
                             "null"
                         ],
                         "title": "Pay summary (salary)",
-                        "description": "The pay the company publishes: currency and amount or range. Deel gives no period, and hourly, monthly and yearly amounts are all in use, so read it with the job. Empty when the company shows no pay.",
-                        "example": "EUR 69,786 - 78,161"
+                        "description": "The pay range the company publishes on Lever: currency, amount or range, and the period Lever states with it. Empty when no pay is shown, about two jobs in three.",
+                        "example": "EUR 45,000 - 75,000 per year"
                     },
                     "postedAt": {
                         "type": [
@@ -116,8 +116,8 @@
                             "null"
                         ],
                         "title": "Posted on (postedAt)",
-                        "description": "When the job was published, exact to the second, in UTC: the date Deel gives Google as datePosted, not the day the draft was made.",
-                        "example": "2026-07-17T14:16:35.046Z"
+                        "description": "When the job was created on Lever, exact to the second, in UTC: the date the job's own page gives Google as datePosted. Jobs can stay open for years.",
+                        "example": "2026-10-30T16:39:29Z"
                     },
                     "jobUrl": {
                         "type": [
@@ -125,8 +125,8 @@
                             "null"
                         ],
                         "title": "Job link (jobUrl)",
-                        "description": "The job's page on the company's Deel career page.",
-                        "example": "https://jobs.deel.com/klarna/job-details/87bd8299-48ef-4c79-9005-0347ecf8b054/overview"
+                        "description": "The job's page on the company's Lever job site.",
+                        "example": "https://jobs.eu.lever.co/prima/5df3ae85-e2db-4e2a-b868-16e57d193a47"
                     },
                     "applyUrl": {
                         "type": [
@@ -134,23 +134,29 @@
                             "null"
                         ],
                         "title": "Apply link (applyUrl)",
-                        "description": "The link to apply on Deel.",
-                        "example": "https://jobs.deel.com/klarna/job-details/87bd8299-48ef-4c79-9005-0347ecf8b054/application"
+                        "description": "The link to apply on Lever. Empty for a checked link that is closed or not found.",
+                        "example": "https://jobs.eu.lever.co/prima/5df3ae85-e2db-4e2a-b868-16e57d193a47/apply"
                     },
                     "status": {
                         "type": "string",
                         "title": "Still open? (status)",
-                        "description": "open for every search result (read live during the run). For a checked link: open, closed (Deel says the posting is no longer published) or not found (no such job or career page).",
+                        "description": "open for every search result (read live during the run). For a checked link: open, closed (Lever no longer lists the job, or never had that ID) or not found (no such Lever job site).",
                         "example": "open"
+                    },
+                    "platform": {
+                        "type": "string",
+                        "title": "Job platform (platform)",
+                        "description": "The ATS the job came from: always lever here.",
+                        "example": "lever"
                     },
                     "companySlug": {
                         "type": [
                             "string",
                             "null"
                         ],
-                        "title": "Ashby board name (companySlug)",
-                        "description": "The career page: the name in its address, as in klarna for jobs.deel.com/klarna. Its capitals matter. A company with no name set has a long ID here.",
-                        "example": "klarna"
+                        "title": "Lever job site (companySlug)",
+                        "description": "The Lever job site: the name in its address, as palantir in jobs.lever.co/palantir. Its capitals matter. A site on Lever's EU host (jobs.eu.lever.co) ends in /eu.",
+                        "example": "prima/eu"
                     },
                     "jobId": {
                         "type": [
@@ -158,14 +164,14 @@
                             "null"
                         ],
                         "title": "Job ID (jobId)",
-                        "description": "Deel's ID of the job posting.",
-                        "example": "87bd8299-48ef-4c79-9005-0347ecf8b054"
+                        "description": "Lever's ID of the job posting.",
+                        "example": "5df3ae85-e2db-4e2a-b868-16e57d193a47"
                     },
                     "checkedAt": {
                         "type": "string",
                         "title": "Checked at (checkedAt)",
-                        "description": "When the run read the boards, in UTC.",
-                        "example": "2026-10-30T11:57:07+00:00"
+                        "description": "When the run read the job sites, in UTC.",
+                        "example": "2026-11-02T23:15:26+00:00"
                     },
                     "description": {
                         "type": [
@@ -173,8 +179,8 @@
                             "null"
                         ],
                         "title": "Job description (description)",
-                        "description": "The job description as plain text, with details on.",
-                        "example": "As a Business Development Associate, you will drive Klarna's commercial growth in the Austrian market."
+                        "description": "The job description as plain text, with details on: the description, each list under its heading, the pay note and the closing text, as the job page shows them.",
+                        "example": "Are you looking for a new challenge?\nFancy helping us shape the future of motor insurance?\nPrima could be the place for you."
                     },
                     "descriptionHtml": {
                         "type": [
@@ -182,8 +188,8 @@
                             "null"
                         ],
                         "title": "Description as HTML (descriptionHtml)",
-                        "description": "The job description as the company wrote it in HTML, with details on.",
-                        "example": "<p>As a Business Development Associate, you will drive Klarna's commercial growth in the Austrian market.</p>"
+                        "description": "The same description in HTML, as the company wrote it, with details on.",
+                        "example": "<p><span style=\"font-size: 16px; color: #000000;\">Are you looking for a new challenge?</span></p>"
                     },
                     "salaryMin": {
                         "type": [
@@ -192,7 +198,7 @@
                         ],
                         "title": "Lowest pay (salaryMin)",
                         "description": "With details on: the lowest pay as a number. Empty when the company shows no pay.",
-                        "example": 69786
+                        "example": 45000
                     },
                     "salaryMax": {
                         "type": [
@@ -200,8 +206,8 @@
                             "null"
                         ],
                         "title": "Highest pay (salaryMax)",
-                        "description": "With details on: the highest pay as a number. Some jobs give only one amount.",
-                        "example": 78161
+                        "description": "With details on: the highest pay as a number; the same as the lowest when the company gives one amount.",
+                        "example": 75000
                     },
                     "salaryCurrency": {
                         "type": [
@@ -212,14 +218,23 @@
                         "description": "With details on: the currency code of the pay.",
                         "example": "EUR"
                     },
+                    "salaryPeriod": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay period (salaryPeriod)",
+                        "description": "With details on: what the pay is per, as Lever states it: year, month, week, day or hour. Empty for pay every two weeks, twice a month or one time (the salary text says which) and when there is no pay; never guessed.",
+                        "example": "year"
+                    },
                     "country": {
                         "type": [
                             "string",
                             "null"
                         ],
                         "title": "Job country (country)",
-                        "description": "The country of the job's main place, when Deel stores one, with details on.",
-                        "example": "Austria"
+                        "description": "With details on: the country of the job's main place, as Lever stores it.",
+                        "example": "Italy"
                     },
                     "countryCode": {
                         "type": [
@@ -227,14 +242,8 @@
                             "null"
                         ],
                         "title": "Country code (countryCode)",
-                        "description": "The two-letter country code, with details on.",
-                        "example": "AT"
-                    },
-                    "platform": {
-                        "type": "string",
-                        "title": "Job platform (platform)",
-                        "description": "The ATS the job came from: always deel here.",
-                        "example": "deel"
+                        "description": "With details on: the two-letter country code of the job's main place.",
+                        "example": "IT"
                     }
                 }
             },
@@ -294,7 +303,7 @@
                 },
                 "details": {
                     "title": "Details",
-                    "description": "The description, job type, department, team, pay as numbers and every other field of each job.",
+                    "description": "The description, job type, department, team, pay as numbers with its period, the country, other places, the apply link and the IDs of each job.",
                     "transformation": {
                         "fields": [
                             "title",
@@ -306,7 +315,8 @@
                             "salaryMin",
                             "salaryMax",
                             "salaryCurrency",
-                            "countryCode",
+                            "salaryPeriod",
+                            "country",
                             "otherLocations",
                             "applyUrl",
                             "companySlug",
@@ -353,8 +363,12 @@
                                 "label": "Pay currency (salaryCurrency)",
                                 "format": "text"
                             },
-                            "countryCode": {
-                                "label": "Country code (countryCode)",
+                            "salaryPeriod": {
+                                "label": "Pay period (salaryPeriod)",
+                                "format": "text"
+                            },
+                            "country": {
+                                "label": "Job country (country)",
                                 "format": "text"
                             },
                             "otherLocations": {
@@ -366,7 +380,7 @@
                                 "format": "link"
                             },
                             "companySlug": {
-                                "label": "Ashby board name (companySlug)",
+                                "label": "Lever job site (companySlug)",
                                 "format": "text"
                             },
                             "jobId": {
@@ -385,11 +399,11 @@
         "keyValueStore": {
             "actorKeyValueStoreSchemaVersion": 1,
             "title": "Run summary",
-            "description": "The OUTPUT record: how many boards were read and matched, how many jobs matched and were saved, the checked links, the notes about how the input was read and the settings used.",
+            "description": "The OUTPUT record: how many job sites were read and matched, how many jobs matched and were saved, the checked links, the notes about how the input was read and the settings used.",
             "collections": {
                 "summary": {
                     "title": "Run summary (OUTPUT)",
-                    "description": "Status, message, counts for the boards and jobs, checked links, notes and settings.",
+                    "description": "Status, message, counts for the job sites and jobs, checked links, job sites that could not be read, notes and settings.",
                     "key": "OUTPUT"
                 }
             }

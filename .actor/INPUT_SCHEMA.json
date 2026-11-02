@@ -1,6 +1,6 @@
 {
-    "title": "Deel Jobs Search",
-    "description": "Type a job title and press Start: you get the newest matching jobs from every company on Deel (159 companies, 1,300+ open jobs). Every other field is optional. Press Start with the form empty for the newest jobs of every kind.",
+    "title": "Lever Jobs Search",
+    "description": "Type a job title and press Start: you get the newest matching jobs from 2,300+ companies on Lever (73,000+ open jobs). Every other field is optional. Press Start with the form empty for the newest jobs of every kind.",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
@@ -8,7 +8,7 @@
             "title": "Job titles to find (searchTerms)",
             "type": "array",
             "editor": "stringList",
-            "description": "Type the job titles or keywords to find, one per line, for example software engineer. A job matches when its title has every word of a line: frontend also finds Front-End. Leave it empty to get the newest jobs of every kind. A pasted Google dork or Deel link works too.",
+            "description": "Type the job titles or keywords to find, one per line, for example software engineer. A job matches when its title has every word of a line: frontend also finds Front-End. Leave it empty to get the newest jobs of every kind. A pasted Google dork such as site:jobs.lever.co intext:engineer, or a Lever link, works too.",
             "placeholderValue": "software engineer",
             "example": [
                 "software engineer"
@@ -20,7 +20,7 @@
             "title": "Where the job is (location)",
             "type": "array",
             "editor": "stringList",
-            "description": "Type where the jobs should be: a city, state, country or region, one per line, for example London, United States, EMEA or LatAm. US, USA and United States all work; a region finds its countries and the jobs posted for it. Worldwide finds the jobs open everywhere. Type Remote here to get remote jobs. Leave it empty for anywhere.",
+            "description": "Type where the jobs should be: a city, state, country or region, one per line, for example London, United States, EMEA or LatAm. US, USA and United States all work: Lever stores the country of most jobs, and a region finds its countries and the jobs posted for it. Worldwide finds the jobs marked worldwide, global or anywhere. Type Remote here to get remote jobs. Leave it empty for anywhere.",
             "placeholderValue": "United States",
             "example": [
                 "United States"
@@ -32,7 +32,7 @@
             "title": "Remote or onsite (workType)",
             "type": "array",
             "editor": "select",
-            "description": "Pick remote, hybrid or onsite, or several. Leave it empty for all of them. This is what the company set on Deel; when it set nothing, the title and location decide. Typed words such as wfh work too.",
+            "description": "Pick remote, hybrid or onsite, or several. Leave it empty for all of them. This is the workplace type the company set on Lever, on 99% of jobs; where it set none, a location or title that says Remote counts as remote and a title that says Hybrid as hybrid. Typed words such as wfh work too.",
             "items": {
                 "type": "string",
                 "enumSuggestedValues": [
@@ -56,7 +56,7 @@
             "title": "Posted in the last (postedWithin)",
             "type": "string",
             "editor": "select",
-            "description": "Pick how new the jobs must be: posted in the last 24 hours, 3 days, 7 days or 30 days. Any time, the default, keeps every open job, newest first. You can also type your own period, such as 48 hours or 2 weeks.",
+            "description": "Pick how new the jobs must be: posted in the last 24 hours, 3 days, 7 days or 30 days. Any time, the default, keeps every open job, newest first. The date is when the job was created on Lever, and a fifth of open jobs are over a year old. You can also type your own period, such as 48 hours or 2 weeks.",
             "enumSuggestedValues": [
                 "24 hours",
                 "3 days",
@@ -80,7 +80,7 @@
             "type": "integer",
             "editor": "number",
             "unit": "jobs",
-            "description": "Type how many jobs to get, newest first: 100 by default. Type 0 to get every matching job. Each job is one charged row, so this also sets the most a run can cost.",
+            "description": "Type how many jobs to get, newest first: 100 by default. Type 0 to get every matching job. Each job is one charged row, so this, with the run start, sets the most a run can cost.",
             "prefill": 100,
             "example": 100,
             "default": 100,
@@ -91,7 +91,7 @@
             "title": "Full details (includeDetails)",
             "type": "boolean",
             "editor": "checkbox",
-            "description": "Tick to add the full details of each job: the description as text and HTML, the pay as numbers with its currency, and the country and country code. A job with details costs $3.50 per 1,000 instead of $2.50.",
+            "description": "Tick to add the full details of each job: the description as text and HTML, the pay as numbers with its currency and period, and the country and country code. Lever sends them with the job list, so no extra requests are made. A job with details costs $2.30 per 1,000 instead of $2.20.",
             "default": false,
             "nullable": true
         },
@@ -112,7 +112,7 @@
             "title": "Job type (employmentType)",
             "type": "array",
             "editor": "select",
-            "description": "Pick the job type: full-time, part-time, contract, internship or temporary, or several. Leave it empty for every job type. Typed words such as freelance or temp work too.",
+            "description": "Pick the job type: full-time, part-time, contract, internship or temporary, or several. Leave it empty for every job type. It is read from each company's own job type words on Lever, which name one type on 82% of jobs; a job whose words name none, such as Full-time or Part-time, is left out once you pick one. Typed words such as freelance or temp work too.",
             "items": {
                 "type": "string",
                 "enumSuggestedValues": [
@@ -140,7 +140,7 @@
             "title": "Match descriptions (searchDescriptions)",
             "type": "boolean",
             "editor": "checkbox",
-            "description": "Tick to match your keywords in the job description too, not only in the title: python then finds every job that asks for Python. Deel sends each description with the job list, so it adds no time.",
+            "description": "Tick to match your keywords in the job description too, not only in the title: kubernetes then finds every job that asks for Kubernetes. Lever sends each description with the job list, so it needs no extra requests.",
             "default": false,
             "nullable": true
         },
@@ -148,11 +148,11 @@
             "title": "Only these companies (companies)",
             "type": "array",
             "editor": "stringList",
-            "description": "Type company names to search only them, one per line: a name (Klarna), the name in the address (klarna) or a Deel link (jobs.deel.com/klarna). A company that is not on our list is tried by its name, and its link always works. Leave it empty to search every company.",
-            "placeholderValue": "Klarna",
+            "description": "Type company names to search only them, one per line: a name (Palantir), the name in the address (palantir) or a Lever link (jobs.lever.co/palantir). A company that is not on our list is tried by its name on Lever's global and EU sites, and its link always works. Leave it empty to search every company.",
+            "placeholderValue": "Palantir",
             "example": [
-                "Klarna",
-                "https://jobs.deel.com/offsec"
+                "Palantir",
+                "https://jobs.eu.lever.co/engelvoelkers"
             ],
             "default": [],
             "nullable": true
@@ -161,10 +161,10 @@
             "title": "Job links to check (jobUrls)",
             "type": "array",
             "editor": "stringList",
-            "description": "Paste Deel job links to check whether they are still open, one per line, instead of searching. Each link comes back open with the job, closed, or not found. Old jobs.deel.com/job-boards links work too.",
-            "placeholderValue": "https://jobs.deel.com/klarna/job-details/87bd8299-48ef-4c79-9005-0347ecf8b054/overview",
+            "description": "Paste Lever job links to check whether they are still open, one per line, instead of searching. Each link comes back open with the job, closed, or not found. Links on jobs.lever.co and jobs.eu.lever.co work, with or without /apply. When no link can be read, the run searches instead and says so.",
+            "placeholderValue": "https://jobs.lever.co/palantir/5168e8fd-fec1-4fea-b7a1-81bdaea65850",
             "example": [
-                "https://jobs.deel.com/klarna/job-details/87bd8299-48ef-4c79-9005-0347ecf8b054/overview"
+                "https://jobs.lever.co/palantir/5168e8fd-fec1-4fea-b7a1-81bdaea65850"
             ],
             "default": [],
             "sectionCaption": "Check job links",
