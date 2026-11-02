@@ -148,7 +148,7 @@
             "title": "Only these companies (companies)",
             "type": "array",
             "editor": "stringList",
-            "description": "Type company names to search only them, one per line: a name (Palantir), the name in the address (palantir) or a Lever link (jobs.lever.co/palantir). A company that is not on our list is tried by its name on Lever's global and EU sites, and its link always works. Leave it empty to search every company.",
+            "description": "Type company names to search only them, one per line: a name (Palantir), the name in the address (palantir) or a Lever link (jobs.lever.co/palantir). A company that is not on our list is tried by its name on Lever's global and EU sites, and its link always works. Leave it empty to search every company on the list.",
             "placeholderValue": "Palantir",
             "example": [
                 "Palantir",
