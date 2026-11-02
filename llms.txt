@@ -1,0 +1,115 @@
+# Deel Jobs Scraper & API - All Deel ATS Career Pages with Pay
+
+> Deel jobs scraper and API for every company on jobs.deel.com, searched live by job title, location, remote, job type and date, newest first.
+
+## Summary
+
+Deel Jobs Search is an Apify actor that searches every company's career page on Deel ATS (jobs.deel.com) at once and returns one row per job, newest first: title, company, location, remote or onsite, job type, department, team, pay, posting date and link. It covers 161 career pages of 159 companies and about 1,300 open jobs in 112 countries (2026-10-30), including Deel itself, Klarna, ExpressVPN, OffSec, Kushki and Holafly. It reads Deel live at run time with no login and no API key. About a third of the jobs publish pay, and the pay comes with every row.
+
+Store: https://apify.com/anshumanatrey/deel-jobs-search
+Source: https://github.com/AnshumanAtrey/deel-jobs-search
+
+## Key features
+
+- Every career page at once, with no list of companies needed.
+- Pay on the plain row when the company publishes it: amount and currency, with no period, because Deel stores none.
+- One keyword is enough; an empty form returns the newest jobs of every kind.
+- Newest first by the date Deel published the job, read live, not from a stored copy.
+- Place filter by city, state, country or region: Germany, EMEA, LatAm, Worldwide.
+- Reads a pasted Google dork such as site:jobs.deel.com/klarna intext:engineer.
+- Job link check: each pasted link comes back open, closed or not found.
+
+## Input keys
+
+- Job titles to find (searchTerms): one per line; a job matches when its title has every word.
+- Where the job is (location): city, state, country or region.
+- Remote or onsite (workType): remote, hybrid or onsite, as the company set it.
+- Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
+- Number of jobs (maxJobs): 100 by default, 0 for every match.
+- Full details (includeDetails): adds the description, pay as numbers with its currency, country and country code.
+- Leave out words (excludeTerms): drops jobs whose title has these words.
+- Job type (employmentType): full-time, part-time, contract, intern or temporary.
+- Match descriptions (searchDescriptions): finds your words in the description too.
+- Only these companies (companies): a name, the name in the address, or a Deel link.
+- Job links to check (jobUrls): checks links instead of searching.
+
+## Pricing
+
+PAY_PER_EVENT model, platform usage included, no start fee:
+
+- Job: $0.0025 per saved job, and per checked link that is closed or not found
+- Job with details: $0.0035 per saved job with full details on
+
+On paid Apify plans these are 10% less on Scale ($0.00225 and $0.00315) and 20% less on Business and above ($0.002 and $0.0028).
+
+Typical costs (Free and Starter price):
+
+- 100 newest jobs: $0.25
+- 100 jobs with full details: $0.35
+- Every job on the list, about 1,300: $3.25
+
+## When to use
+
+- The user wants jobs from companies on Deel ATS, or a jobs.deel.com API.
+- The user wants jobs with published pay at startups and fintechs.
+- The user wants a daily feed of new jobs by title, country or region across every Deel company.
+- The user wants to check whether Deel job links are still open.
+- The user wants a list of companies that hire through Deel.
+
+## When NOT to use
+
+- The user needs a wide search across many employers: Deel holds about 1,300 jobs. Use a multi-ATS actor, workday-job-search or ashby-jobs-search.
+- The user needs the pay period: Deel does not store one.
+- The user needs jobs from a company that is not on Deel.
+
+## Sample input
+
+```json
+{
+  "searchTerms": ["software engineer"],
+  "location": ["Germany", "United States"],
+  "postedWithin": "30 days",
+  "maxJobs": 100
+}
+```
+
+## Sample output (one record)
+
+```json
+{
+  "title": "Senior Frontend Software Engineer",
+  "company": "Arcadian Consulting",
+  "location": "SPE Culver City - Hybrid, United States",
+  "otherLocations": [],
+  "workType": "hybrid",
+  "employmentType": "full-time",
+  "department": "Department",
+  "team": "Sony Staff Aug",
+  "salary": "USD 79 - 85.50",
+  "postedAt": "2026-09-28T23:49:12.188Z",
+  "jobUrl": "https://jobs.deel.com/arcadian-consulting/job-details/fa835a29-a136-46e0-a259-0857e6db86ad/overview",
+  "applyUrl": "https://jobs.deel.com/arcadian-consulting/job-details/fa835a29-a136-46e0-a259-0857e6db86ad/application",
+  "status": "open",
+  "platform": "deel",
+  "companySlug": "arcadian-consulting",
+  "jobId": "fa835a29-a136-46e0-a259-0857e6db86ad",
+  "checkedAt": "2026-10-30T15:41:01+00:00"
+}
+```
+
+## Differentiators vs alternatives
+
+- vs fantastic-jobs/career-site-job-listing-api ($0.012 per job, $0.01 start): many more platforms from a stored database; this actor costs less per job and reads Deel live.
+- vs memo23/career-site-ats-jobs-api ($0.004 per job, $0.03 start): many more platforms, but it needs the companies named; this actor needs no list and has no start fee.
+- vs om_kh/ats-jobs-api ($0.0015 per job): cheaper per job, but it needs the company's domain; this actor searches every company at once.
+
+## Documentation
+
+- Apify Store: https://apify.com/anshumanatrey/deel-jobs-search
+- GitHub repo: https://github.com/AnshumanAtrey/deel-jobs-search
+- Issues / feedback: GitHub Issues on the above repo
+- License: MIT
+
+## Maintainer
+
+Anshuman Atrey (https://github.com/AnshumanAtrey), who publishes a portfolio of data and OSINT actors on Apify Store. Feature requests and bugs: LinkedIn (https://linkedin.com/in/anshumanatrey, fastest), GitHub issues, or atrey.dev.

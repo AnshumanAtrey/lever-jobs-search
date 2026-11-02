@@ -1,0 +1,114 @@
+{
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build.",
+    "options": {
+        "build": "latest",
+        "memoryMbytes": 1024,
+        "timeoutSecs": 1800
+    },
+    "tasks": [
+        {
+            "name": "deel-jobs-last-24-hours",
+            "title": "Find every Deel job posted in the last 24 hours",
+            "description": "Get every job that companies on Deel ATS published in the last day, newest first, with the company, location, pay when shown, and link. Schedule it daily for a fresh feed of jobs.",
+            "input": {
+                "postedWithin": "24 hours",
+                "maxJobs": 100
+            },
+            "seoTitle": "New Deel Jobs in the Last 24 Hours",
+            "seoDescription": "Every job published on Deel career pages in the last day, newest first, with company, location, pay and link. Run it daily for a fresh job feed.",
+            "inputSchemaFields": ["searchTerms", "location", "workType", "postedWithin", "maxJobs"],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "remote-jobs-on-deel",
+            "title": "Find remote jobs on Deel career pages",
+            "description": "Get the newest remote jobs from every company on Deel ATS, with the company, location, pay when shown, posting date and link. Remote is what the company set on Deel.",
+            "input": {
+                "workType": ["remote"],
+                "maxJobs": 100
+            },
+            "seoTitle": "Remote Jobs on Deel Career Pages",
+            "seoDescription": "Search every company on Deel ATS for remote jobs at once, newest first, with company, pay, posting date and link. No login needed.",
+            "inputSchemaFields": ["searchTerms", "location", "workType", "employmentType", "postedWithin", "maxJobs"],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "software-engineer-jobs-deel",
+            "title": "Find software engineer jobs on Deel career pages",
+            "description": "Search every company on Deel ATS for software engineer jobs at once, with the company, location, pay when shown, posting date and link, newest first.",
+            "input": {
+                "searchTerms": ["software engineer"],
+                "maxJobs": 100
+            },
+            "seoTitle": "Software Engineer Jobs on Deel Career Pages",
+            "seoDescription": "Every software engineer job on Deel ATS career pages, newest first, with company, location, pay and link. One search across every company.",
+            "inputSchemaFields": ["searchTerms", "location", "workType", "postedWithin", "maxJobs"],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "sales-jobs-europe-deel",
+            "title": "Find sales jobs in Europe on Deel career pages",
+            "description": "Get the newest sales jobs in Europe from every company on Deel ATS, including jobs posted for EMEA and jobs open worldwide, with the company, pay when shown and link.",
+            "input": {
+                "searchTerms": ["sales", "account executive"],
+                "location": ["Europe"],
+                "maxJobs": 100
+            },
+            "seoTitle": "Sales Jobs in Europe on Deel Career Pages",
+            "seoDescription": "Sales and account executive jobs in Europe from every company on Deel ATS, newest first, with company, pay and link. No login or API key.",
+            "inputSchemaFields": ["searchTerms", "location", "workType", "postedWithin", "maxJobs"],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "deel-jobs-with-pay-and-descriptions",
+            "title": "Get Deel jobs with pay, descriptions and country",
+            "description": "Get the newest jobs on Deel ATS with full details: the description as text and HTML, pay as numbers with its currency, department, team, job type and country. Ready for a job board or an AI agent.",
+            "input": {
+                "includeDetails": true,
+                "maxJobs": 100
+            },
+            "seoTitle": "Deel Jobs With Pay, Descriptions and Country",
+            "seoDescription": "Newest Deel ATS jobs with the full description, pay as numbers, department, team, job type and country. Clean JSON for a job board or an AI agent.",
+            "inputSchemaFields": ["searchTerms", "location", "postedWithin", "maxJobs", "includeDetails"],
+            "datasetView": "details"
+        },
+        {
+            "name": "klarna-jobs-deel",
+            "title": "Get every open Klarna job with pay",
+            "description": "Get every open job at Klarna from its Deel career page, live, with the location, pay range, department, team, work type, posting date and link.",
+            "input": {
+                "companies": ["Klarna"],
+                "maxJobs": 0
+            },
+            "seoTitle": "Klarna Jobs API: Every Open Role With Pay",
+            "seoDescription": "Every open Klarna job, read live from its Deel career page, with location, pay range, department, team and link. No login or API key.",
+            "inputSchemaFields": ["searchTerms", "location", "companies", "maxJobs"],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "deel-company-open-jobs",
+            "title": "Get every open job at Deel itself",
+            "description": "Get every open job at Deel, the company, live, with the location, pay when shown, work type, posting date and link, including the jobs posted for many countries at once.",
+            "input": {
+                "companies": ["Deel"],
+                "maxJobs": 0
+            },
+            "seoTitle": "Deel Careers API: Every Open Role at Deel",
+            "seoDescription": "Every open job at Deel, read live, with location, pay, work type and link. Deel's own careers as clean JSON, CSV or Excel, with no login.",
+            "inputSchemaFields": ["searchTerms", "location", "companies", "maxJobs"],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "check-deel-job-links",
+            "title": "Check whether Deel job links are still open",
+            "description": "Paste Deel job links and each comes back open, closed or not found, with the job's details when it is open. Handy for cleaning dead links out of a job board or a spreadsheet.",
+            "input": {
+                "jobUrls": ["https://jobs.deel.com/klarna/job-details/87bd8299-48ef-4c79-9005-0347ecf8b054/overview"]
+            },
+            "seoTitle": "Check if Deel Job Links Are Still Open",
+            "seoDescription": "Paste Deel job links and see which are open, closed or gone. Clean dead links out of a job board or a spreadsheet, with no login or API key.",
+            "inputSchemaFields": ["jobUrls"],
+            "datasetView": "jobs"
+        }
+    ]
+}

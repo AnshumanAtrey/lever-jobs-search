@@ -1,0 +1,82 @@
+{
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs in CI (manager/rules/SEO.md). actorId is added after the first deploy.",
+    "seoTitle": "Deel Jobs Scraper - Every Deel ATS Career Page",
+    "seoDescription": "Search every company on Deel ATS at once: job titles, pay, locations, remote work and posting dates. Newest first, read live, with no login or API key.",
+    "exampleRunInput": {
+        "searchTerms": [
+            "software engineer"
+        ]
+    },
+    "actorPermissionLevel": "LIMITED_PERMISSIONS",
+    "isPublic": true,
+    "defaultRunOptions": {
+        "build": "latest",
+        "memoryMbytes": 1024,
+        "timeoutSecs": 1800
+    },
+    "pricing": {
+        "$comment": "2026-10-30. Rule: rules/SEO.md section 16. No actor is dedicated to Deel; anchors for one Deel job among multi-ATS actors: memo23/career-site-ats-jobs-api $0.004 plus $0.03 a run (85 u30, needs the companies named), fantastic-jobs/career-site-job-listing-api $0.012 plus $0.01 (1,668 u30, its own database), parseforge $0.004, hydrafetch $0.003, om_kh $0.0015 (1 u30). job-details is 12.5% under memo23 per row, with no start fee; start high while private: a cut is free, a raise costs a month. Gentle ladder per the owner's decision of 2026-10-29.",
+        "apply": true,
+        "pricingInfos": [
+            {
+                "pricingModel": "PAY_PER_EVENT",
+                "reasonForChange": "First pricing",
+                "pricingPerEvent": {
+                    "actorChargeEvents": {
+                        "job": {
+                            "eventTitle": "Job",
+                            "eventDescription": "One saved job row: title, company, locations, work type, job type, department, team, pay, posting date, job link. Also one checked job link that is closed or not found.",
+                            "isPrimaryEvent": true,
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.0025
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.0025
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.00225
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.002
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.002
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.002
+                                }
+                            }
+                        },
+                        "job-details": {
+                            "eventTitle": "Job with details",
+                            "eventDescription": "One saved job row with full details on: everything in a Job row plus the description as text and HTML, pay as numbers with its currency, country and country code.",
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.0035
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.0035
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.00315
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.0028
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.0028
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.0028
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "actorId": "jcvgbgeV5HWpqDesn",
+    "defaultRunOptions$comment": "1 GB: a pass over every page takes 4 s for $0.0011 of compute (2026-10-30, 100 newest jobs: 512 MB 7 s $0.0010, 1 GB 4 s $0.0011, 2 GB 3 s $0.0012), about 0.5% of the $0.20 such a run earns."
+}
