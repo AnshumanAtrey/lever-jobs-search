@@ -1,68 +1,80 @@
-# Deel Jobs Scraper & API - All Deel ATS Career Pages with Pay
+# Lever Jobs Scraper & API - Salary, Remote, Last 24 Hours
 
-Deel jobs scraper and API: search every company's career page on Deel ATS (jobs.deel.com) at once, live, and get each job's title, company, location, remote or onsite, job type, department, team, pay, posting date and link, newest first. Turn on full details for the description, pay as numbers and the country.
+Lever jobs scraper and API: search the job sites of 2,300+ companies on Lever (jobs.lever.co and jobs.eu.lever.co) at once, live, and get each job's title, company, location, remote or onsite, job type, department, team, salary with its period, posting date and link, newest first. Turn on full details for the description as text and HTML, pay as numbers and the country.
 
-Use it as a Deel jobs API, a jobs.deel.com scraper or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. It is the `site:jobs.deel.com` Google dork done at the source, with the fields a search result cannot give you. Available as an [Apify Actor](https://apify.com/anshumanatrey/deel-jobs-search). $0.0025 per job, $0.0035 with full details, no start fee, no login, no API key.
+Use it as a Lever jobs API with no Lever API key, a jobs.lever.co scraper or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. It reads the public Lever Postings API and is the `site:jobs.lever.co` Google dork done at the source, with the fields a search result cannot give you. Available as an [Apify Actor](https://apify.com/anshumanatrey/lever-jobs-search). $0.0022 per job, $0.0023 with full details, $0.01 per run start at the default memory, no login, no API key.
 
 ## What does it do?
 
-- **Searches 161 career pages of 159 companies at once**, in about 4 seconds. 1,300+ open jobs in 112 countries, at companies such as Deel itself, Klarna, ExpressVPN, OffSec, Kushki, Holafly, Ledn, dott, Zema Global and Cochrane.
-- **Pay on the plain row.** When a company publishes pay, about a third of the jobs, it comes with every row at no extra price.
+- **Searches 2,396 Lever job sites of 2,392 companies at once.** On 2026-11-02 they held 73,782 open jobs at 2,057 companies in 140 countries, at employers such as Palantir, Shield AI, Veeva Systems, Gopuff, Lyra Health, Zoox, Spotify, Engel & Völkers and Paytm.
+- **Salary on the plain row, with its period.** When a company publishes pay, a third of the jobs and almost half of the US jobs, it comes with every row at no extra price, with the period Lever states: per year, per hour or per month.
 - **One keyword is enough.** Type a job title and press Start. Leave the form empty for the newest jobs of every kind.
-- **Newest first, read live.** Every job comes from Deel at the moment of your run, not from a stored copy.
-- **Filters that take what people type.** Germany, EMEA, Remote, contract, last 24 hours, or a pasted Google dork such as `site:jobs.deel.com/klarna intext:engineer`.
-- **Checks job links.** Paste links and each comes back open, closed or not found.
+- **Newest first, read live.** Every job comes from Lever at the moment of your run, sorted by the time it was created.
+- **Filters that take what people type.** London, Germany, EMEA, Remote, contract, internship, last 24 hours, or a pasted Google dork such as `site:jobs.lever.co/palantir intext:engineer`.
+- **Checks job links.** Paste links from jobs.lever.co or jobs.eu.lever.co and each comes back open, closed or not found.
 
-## How is it different from other Deel scrapers?
+## How is it different from other Lever scrapers?
 
-- **You do not need to know the companies.** Deel publishes no list of the companies on its ATS, so a live reader normally needs the name, link or domain from you. This actor carries a list built from web archives and search engines, so one search covers all of them and a job title finds companies you had never heard of.
-- **It is the only actor made for Deel alone.** Others treat it as one platform among dozens. This one reads what Deel really stores: work type, job type, department, team, pay and every location.
-- **The real posting date.** Deel keeps two dates: when a draft was made and when it was published. This actor gives the published one, the date Deel's own job page hands to Google (10 of 10 pages checked). In a sample of 1,033 jobs, 175 had them more than a week apart.
-- **Full text at no extra time.** Deel sends each description with the job list, so matching your words inside descriptions costs no extra requests: python finds 6 jobs by title and 167 by description.
-- **A failed read costs nothing.** You pay per delivered row.
+- **Every company on the list, read live.** Lever publishes no list of its customers, so a live reader normally needs a company name or link from you, and most actors that search every company read a stored copy. This one carries a list of 2,396 job sites built from the Wayback Machine, Common Crawl, freehire and GitHub lists, and reads all of them at the moment of your run. Of the 13 most used actors that name Lever (the table below), 8 search a stored copy, 3 need company names, links or a preset list, and 2 read a list of companies live across Greenhouse, Lever and Ashby: yugenox/ats-jobs-search and viridian_layout_ea2/company-career-site-jobs.
+- **The real posting date.** Lever's own job page tells Google the day a job was created, and this actor sorts and filters by that moment, to the second (33 of 33 job pages checked on 19 sites agree). Jobs stay open for years on Lever, so Posted in the last is how to see only the new ones.
+- **Pay with its period, never guessed.** Lever stores pay with its interval, so the period comes from Lever: per year on 15,301 jobs, per hour on 8,221 and per month on 780 on 2026-11-02. Ranges of 0 to 0 or 1 to 1, which companies set where they keep pay hidden, are not shown as pay.
+- **Lever's EU sites too.** Companies on Lever's EU instance live only on jobs.eu.lever.co: 85 job sites on the list, with 2,942 open jobs on 2026-11-02, are read there.
+- **Job type from the company's own words.** Lever leaves the job type to each company's words (Full-time, CDI, Contract: Part-Time, Werkstudent), and this actor reads them into five types where they name one: 82% of jobs.
+- **You pay for what you get.** One charge per delivered row, plus the run start, and a spending limit stops the run cleanly with the jobs it paid for.
 
 ## When should I use it?
 
-- **Job seekers and job boards:** remote and international jobs at startups and fintechs, many with pay, on a daily schedule.
-- **Recruiters and sourcing teams:** see who is hiring for a role across every company on Deel, and at what pay.
-- **Sales and market research:** companies on Deel hire across borders, which makes them a ready list for anyone selling to remote-first and global teams.
-- **Data teams and AI agents:** one clean, stable feed of Deel jobs through the API or MCP.
+- **Job seekers and job boards:** new jobs by title, country and date across 2,300+ companies, with pay where it is published, on a daily schedule.
+- **Recruiters and sourcing teams:** see who is hiring for a role right now, anywhere on Lever, and at what pay.
+- **Sales and market research:** companies hiring for a function, by country and date, as a buying signal, and a list of the companies that hire through Lever.
+- **Data teams and AI agents:** one clean, stable feed of Lever jobs through the API or MCP.
 
-## How much does it cost to scrape Deel jobs?
+## How much does it cost to scrape Lever jobs?
 
-Pay per event. Platform usage is included, and there is no start fee or monthly fee.
+Pay per event. Platform usage is included, and there is no monthly fee.
 
 | Event | Price | When it is charged |
 |---|---|---|
-| Job | $0.0025 | One saved job, and one checked link that is closed or not found |
-| Job with details | $0.0035 | One saved job with full details on |
+| Job | $0.0022 | One saved job, and one checked link that is closed or not found |
+| Job with details | $0.0023 | One saved job with full details on |
+| Run start | $0.005 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.01 at the default 2 GB |
 
-On paid Apify plans these are 10% less on Scale ($0.00225 and $0.00315) and 20% less on Business and above ($0.002 and $0.0028).
+On paid Apify plans the job prices are 10% less on Scale ($0.00198 and $0.00207) and 20% less on Business and above ($0.00176 and $0.00184); the run start stays $0.005 per GB.
 
-| Job (Free and Starter price) | Cost |
+| Run (Free and Starter price, default memory) | Cost |
 |---|---|
-| 100 newest jobs | $0.25 |
-| 100 jobs with full details | $0.35 |
-| Every job on the list, about 1,300 | $3.25 |
-| Every job with full details | $4.55 |
+| 100 newest jobs | $0.23 |
+| 100 jobs with full details | $0.24 |
+| 1,000 jobs | $2.21 |
+| Every open Palantir job, 305 on 2026-11-02 | $0.68 |
+| Every job on the list, 73,782 on 2026-11-02 | $162.33 |
 
-Apify's free $5 monthly credit covers about 2,000 jobs, more than every open job on the list. Number of jobs (`maxJobs`) sets the most a run can cost, and a run stops at its spending limit with a message saying so.
+Why a run start: Lever has no search, so every search reads all 2,396 job sites, about 81 MB, whatever it finds, and the run start pays for that read. Apify's free $5 monthly credit covers about 2,100 jobs in runs of 100. Number of jobs (`maxJobs`) and the run start set the most a run can cost, and a run stops at its spending limit with a message saying so.
 
-## How does the price compare with other Deel scrapers?
+## How does the price compare with other Lever scrapers?
 
-Every actor on the Apify Store that lists Deel among the platforms it reads, found by reading the listings of 563 job actors on 2026-10-30, ordered by users in the last 30 days. Free-plan prices from each listing.
+Every actor on the Apify Store that names Lever in its title, slug, description or SEO text and had 50 or more users in the last 30 days, found by searching the Store for 12 Lever terms and 20 job terms on 2026-11-02 (3,631 actors read), ordered by users. Free-plan prices from each actor's current pricing.
 
-| Actor | Users, 30 days | Per job | Start fee | Covers |
+| Actor | Users, 30 days | Per job | Start fee | Input |
 |---|---|---|---|---|
-| fantastic-jobs/career-site-job-listing-api | 1,668 | $0.012 | $0.01 | 58 ATS from its own database; `deel` is one filter |
-| fantastic-jobs/career-site-job-listing-feed | 284 | $0.0025 | $0.10 | The same database as a feed |
-| memo23/career-site-ats-jobs-api | 85 | $0.004 | $0.03 | 116 ATS, the boards or company names you give it |
-| parseforge/career-site-jobs-scraper | 7 | $0.004 | $0.002 | 21 ATS and feeds, the companies you name |
-| hydrafetch/company-jobs-scraper | 2 | $0.003 | $0.00005 | The domains you give it, plus $0.01 a company |
-| om_kh/ats-jobs-api | 1 | $0.0015 | none | 77 ATS, the domains you give it |
-| This actor | new | $0.0025 | none | Deel only, every company on the list with no links needed |
+| fantastic-jobs/career-site-job-listing-api | 1,632 | $0.012 | $0.01 | Keyword, from its own database of 58 ATS |
+| fantastic-jobs/career-site-job-listing-feed | 282 | $0.0025 | $0.10 | The same database as a feed |
+| hirebase/job-search | 137 | $0.005 | $0.001 | Keyword, from its own database of 20+ ATS |
+| jobo.world/ats-jobs-api | 134 | $0.004 | $0.00005 | Keyword, from its own database of 75+ ATS |
+| bovi/greenhouse-lever-ashby-job-scraper | 100 | $0.0015 | $0.00005 | Company names or preset lists, 6 ATS |
+| factpipe/ats-jobs-feed | 98 | $0.003, $0.005 from 2026-11-06 | none | Keyword, from its feed of 19,000+ companies |
+| yugenox/ats-jobs-search | 86 | $0.002 | none | Keyword across Greenhouse, Lever and Ashby boards, live |
+| memo23/career-site-ats-jobs-api | 81 | $0.004 | $0.03 | Board links or company names, live |
+| fantastic-jobs/lever-co-jobs-api | 76 | $0.0025 | none | Keyword, from its own database of Lever jobs of the last 6 months |
+| jobspipe/jobspipe-job-search | 61 | $0.00196 | none | Keyword, from its index of 30+ job boards |
+| jtpalms/ats-jobs-index | 60 | $0.003 | $0.00005 | Keyword, from its index refreshed twice a day |
+| conserving_celerytop/live-career-page-jobs-api | 55 | $0.045 a company, up to 1,000 jobs | $0.00005 | Company names, websites or job board links, live |
+| viridian_layout_ea2/company-career-site-jobs | 53 | $0.0015 | $0.00005 | Its list of 3,500+ Greenhouse, Lever and Ashby companies, or the ones you name, live |
+| This actor | new | $0.0022, $0.0023 with details | $0.005 per GB, $0.01 at 2 GB | One keyword, all 2,396 Lever job sites, live |
 
-Where others are cheaper: om_kh costs less per job when you already know the company's domain. Where others do more: the multi-ATS actors cover many platforms in one run.
+Besides these 13, 1,547 listings name Lever, each with fewer than 50 users. Two of them are made for Lever alone: lergassy/lever-jobs-scraper (11 users, $0.0012 a job, the companies you list) and jobo.world/lever-jobs-scraper-api (6 users, $0.004, its own index of Lever jobs).
+
+Where others are cheaper: yugenox costs $0.002 a job with no start fee and reads Greenhouse, Lever and Ashby live; bovi and viridian cost $0.0015 a job when you name the companies or use their own lists; jobspipe $0.00196 from its index; conserving_celerytop about $0.0005 a job at 100 jobs a company, and openclawai/career-site-ats-jobs-scraper (47 users) $0.0005 a job, when you know the companies. On paid plans fantastic-jobs/lever-co-jobs-api costs $0.002 on Starter, $0.0012 on Scale and $0.0008 on Business, against this actor's $0.0022, $0.00198 and $0.00176, and the fantastic-jobs feed the same plus its start fee; on Business, jobo.world ($0.0013) and jtpalms ($0.0015) are cheaper too. Most of these charge no start fee or Apify's default $0.00005. Where others do more: the database actors add fields extracted by AI and LinkedIn company data, and the multi-ATS ones cover many platforms in one run.
 
 ## Which inputs does it take?
 
@@ -70,16 +82,16 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 
 | Field | What it does |
 |---|---|
-| Job titles to find (`searchTerms`) | One per line. A job matches when its title has every word: frontend also finds Front-End. A pasted Google dork or Deel link works too |
-| Where the job is (`location`) | A city, state, country or region: London, United States, EMEA, LatAm. Worldwide finds jobs open everywhere, and Remote asks for remote jobs |
-| Remote or onsite (`workType`) | remote, hybrid or onsite, as the company set it on Deel |
+| Job titles to find (`searchTerms`) | One per line. A job matches when its title has every word: frontend also finds Front-End. A pasted Google dork or Lever link works too |
+| Where the job is (`location`) | A city, state, country or region: London, United States, EMEA, LatAm. Worldwide finds jobs marked worldwide, global or anywhere, and Remote asks for remote jobs |
+| Remote or onsite (`workType`) | remote, hybrid or onsite, as the company set it on Lever (99% of jobs); else Remote in a location or the title, or Hybrid in the title |
 | Posted in the last (`postedWithin`) | 24 hours, 3 days, 7 days, 30 days, any time, or your own period such as 48 hours |
 | Number of jobs (`maxJobs`) | How many, newest first: 100 by default, 0 for every match |
-| Full details (`includeDetails`) | Adds the description as text and HTML, pay as numbers with its currency, country and country code |
+| Full details (`includeDetails`) | Adds the description as text and HTML, pay as numbers with its currency and period, country and country code |
 | Leave out words (`excludeTerms`) | Drops jobs whose title has these words, such as senior or intern |
-| Job type (`employmentType`) | full-time, part-time, contract, intern or temporary |
+| Job type (`employmentType`) | full-time, part-time, contract, intern or temporary, where the company's own words name one |
 | Match descriptions (`searchDescriptions`) | Finds your words in the description too, not only the title |
-| Only these companies (`companies`) | A name (Klarna), the name in the address (klarna) or a Deel link. Empty searches everyone |
+| Only these companies (`companies`) | A name (Palantir), the name in the address (palantir) or a Lever link. Empty searches everyone |
 | Job links to check (`jobUrls`) | Paste job links to check whether they are still open, instead of searching |
 
 Example input:
@@ -87,66 +99,87 @@ Example input:
 ```json
 {
   "searchTerms": ["software engineer"],
-  "location": ["Germany", "United States"],
-  "postedWithin": "30 days",
+  "location": ["United States", "Canada"],
+  "postedWithin": "7 days",
   "maxJobs": 100
 }
 ```
 
 ## What does the output look like?
 
-One row per job, newest first. These rows are from a run on 2026-10-30, build 1.0.2, searching every company for software engineer in 3 seconds (28 jobs at 14 companies):
+One row per job, newest first. These rows are from a local run of the actor's engine on 2026-11-02, searching every job site for software engineer: 1,987 jobs at 505 companies, the 100 newest saved; shown are rows 2, 4, 5, 8 and 55. 76 of the 100 were Jobgether's copies of a few jobs, one per country (see Common questions). TODO_DEPLOYED: the rows, build number and seconds of the deployed build's example run go here.
 
 | Job title (`title`) | Company name (`company`) | Main location (`location`) | Remote or onsite (`workType`) | Pay summary (`salary`) | Posted on (`postedAt`) |
 |---|---|---|---|---|---|
-| Staff Software Engineer | Offsec Services | Remote | remote |  | 2026-10-21 |
-| Software Engineer (Python/AWS) | Zema Global | London, United Kingdom | hybrid |  | 2026-10-12 |
-| Senior Frontend Software Engineer | Arcadian Consulting | SPE Culver City - Hybrid, United States | hybrid | USD 79 - 85.50 | 2026-09-28 |
-| Founding Software Engineer | Percept | RescueSight Inc., United States | hybrid | USD 150,000 - 300,000 | 2026-08-14 |
+| Staff Software Engineer ML Platform (6244) | Shield AI | San Diego, California | onsite | USD 200,000 - 300,000 per year | 2026-11-02 |
+| Senior Software Engineer, Backend & AI Platform - Sureel AI | Warner Music Group | Munich | onsite |  | 2026-11-02 |
+| Staff Software Engineer - Cloud Services | Agiloft | United States | remote |  | 2026-11-02 |
+| Software Engineer | Intropic | London UK | hybrid |  | 2026-11-02 |
+| Principal Software Quality Engineer | Weekday | Bengaluru | remote | INR 4,000,000 - 7,000,000 per year | 2026-11-02 |
 
 One row as JSON:
 
 ```json
 {
-  "title": "Senior Frontend Software Engineer",
-  "company": "Arcadian Consulting",
-  "location": "SPE Culver City - Hybrid, United States",
-  "otherLocations": [],
-  "workType": "hybrid",
+  "title": "Staff Software Engineer ML Platform (6244)",
+  "company": "Shield AI",
+  "location": "San Diego, California",
+  "otherLocations": ["San Mateo, California"],
+  "workType": "onsite",
   "employmentType": "full-time",
-  "department": "Department",
-  "team": "Sony Staff Aug",
-  "salary": "USD 79 - 85.50",
-  "postedAt": "2026-09-28T23:49:12.188Z",
-  "jobUrl": "https://jobs.deel.com/arcadian-consulting/job-details/fa835a29-a136-46e0-a259-0857e6db86ad/overview",
-  "applyUrl": "https://jobs.deel.com/arcadian-consulting/job-details/fa835a29-a136-46e0-a259-0857e6db86ad/application",
+  "department": "Hivemind Enterprise Division",
+  "team": "Engineering",
+  "salary": "USD 200,000 - 300,000 per year",
+  "postedAt": "2026-11-02T22:20:42Z",
+  "jobUrl": "https://jobs.lever.co/shieldai/82e0ffd1-3887-4253-b458-00f39e0a387f",
+  "applyUrl": "https://jobs.lever.co/shieldai/82e0ffd1-3887-4253-b458-00f39e0a387f/apply",
   "status": "open",
-  "platform": "deel",
-  "companySlug": "arcadian-consulting",
-  "jobId": "fa835a29-a136-46e0-a259-0857e6db86ad",
-  "checkedAt": "2026-10-30T15:41:01+00:00"
+  "platform": "lever",
+  "companySlug": "shieldai",
+  "jobId": "82e0ffd1-3887-4253-b458-00f39e0a387f",
+  "checkedAt": "2026-11-02T23:11:48+00:00"
 }
 ```
 
-Full details add `description`, `descriptionHtml`, `salaryMin`, `salaryMax`, `salaryCurrency`, `country` and `countryCode`. A run also writes an `OUTPUT` record: how many career pages were read, how many jobs matched and were saved, and any notes on how your input was read.
+Full details add `description`, `descriptionHtml`, `salaryMin`, `salaryMax`, `salaryCurrency`, `salaryPeriod`, `country` and `countryCode`. A checked link that is closed or not found comes back with its `status`, company and link, and the other fields empty. A run also writes an `OUTPUT` record: how many job sites were read, how many jobs matched and were saved, the job sites that could not be read, and any notes on how your input was read.
 
 ## How fast is it?
 
-Every career page in 4 seconds at the default 1 GB of memory (run Fivfgrlt0o9s0dnek, 2026-10-30, 100 newest jobs). Deel returns a whole company in one answer, so full details and matching descriptions add no time.
+TODO_DEPLOYED: the seconds of the empty form and of a keyword search at the default memory on the deployed build, with their run ids, go here. Lever's Postings API has no word search, no date filter and no sort, so every search reads all 2,396 job sites, one call each for all but the 4 biggest, and a keyword takes about as long as the empty form. Full details and matching descriptions add no requests, because Lever sends each description with the job list. Naming companies or checking links reads only those sites.
 
 ## Common questions
 
-### Why does some pay look small?
+### Which posting date does it use?
 
-Deel stores an amount and a currency with no period, and companies use it for hourly, monthly and yearly pay alike: USD 17 - 18, PLN 5,500 - 6,500 and USD 160,000 - 210,000 are all real rows. This actor shows what the company wrote and never guesses the period, so read the amount with the job. Some jobs give only one amount.
+The moment the job was created on Lever. Lever's own job page gives Google that day as its date posted (33 of 33 job pages checked on 19 sites agree), and this actor sorts and filters by it, to the second. Lever's XML feed carries a later time, which is not used. Jobs stay open for years: on 2026-11-02, 16,141 open jobs (21.9%) had been created more than a year before, the oldest in 2009, so pick Posted in the last to see only new ones.
+
+### Why does a keyword search take as long as an empty form?
+
+The Lever Postings API answers with every open job of one job site, with no word search, date filter or sort. So every search reads all 2,396 job sites and matches your words itself. Naming companies in Only these companies reads only those sites, which is much faster.
+
+### Why does the same job show up in many countries?
+
+Some companies post one copy of a job per place. The biggest is Jobgether, a job-matching platform that posts jobs on Lever for the companies it shortlists candidates for, one copy per country: 3,667 of the 73,782 jobs (5%) on 2026-11-02, but because it posts many each day, it held 76 of the 100 newest software engineer jobs and 88 of the 100 newest product manager jobs that day. Each copy names a different place, so each is its own row, and there is no field yet to leave one company out.
+
+### Why is the job type empty on some jobs?
+
+Lever has no fixed job type: each company writes its own words (Full-time, CDI, Contract: Part-Time, PRN). This actor reads them into full-time, part-time, contract, intern or temporary where they name one type, 82% of jobs on 2026-11-02. Words such as Full-time or Part-time, Remote or Employee name no single type and leave it empty, and a Job type filter then leaves those jobs out.
+
+### Is the pay yearly or hourly?
+
+Lever stores pay with its period, and the row shows it: per year on 15,301 jobs, per hour on 8,221, per month on 780, per day on 116 and per week on 50 on 2026-11-02. Pay every two weeks, twice a month or one time keeps those words in the text and has no `salaryPeriod` (158 jobs). Ranges of 0 to 0 or 1 to 1, which companies set where they keep pay hidden, are not shown as pay.
+
+### What about Lever's EU job sites?
+
+Lever runs a separate EU instance, and its companies' job sites live only on jobs.eu.lever.co. 85 job sites on the list are EU sites, with 2,942 open jobs on 2026-11-02. Their job site name in `companySlug` ends in /eu, as in engelvoelkers/eu, and a jobs.lever.co link to one of them is found on the EU host too.
 
 ### How does it find every company?
 
-Deel has no list, so the list is built the way the `site:jobs.deel.com` dork works: the Wayback Machine, Common Crawl's index, search engines and public GitHub files gave 184 candidates, and 161 of those pages answer. Testing 31,728 other company names found only 9 more. That list cannot be proven complete, so to search a company that is not on it, paste its link or type its name into Only these companies.
+Lever has no public list of its customers, so the list is built the way the `site:jobs.lever.co` dork works, from the web's own memory: the Wayback Machine's index of both hosts, Common Crawl's index, freehire's public job API and 11 company and job lists on GitHub gave 9,431 candidate names, each checked live with Lever's API. 2,396 job sites answer and their job pages open; left out are 467 sites whose job pages all answer 404 (their 1,412 links would be dead) and 12 demo and test sites. Of the job sites on the list, the Wayback Machine names 93%, Common Crawl 83%, the GitHub lists 75% and freehire 69%. An estimate from how often the sources overlap puts the job sites they can see at 2,468 or more, so the list holds at most about 97% of them; Lever's vendor listings say over 5,000 companies use it, and an account needs no public job site. To search a company that is not on the list, paste its link or type its name into Only these companies.
 
 ### Does it need a login or an API key?
 
-No. Deel's official ATS API needs a customer's own token and reads only that customer's jobs. This actor reads what each career page shows any visitor. You need only an Apify account.
+No. The Lever Postings API is public and documented (github.com/lever/postings-api): it serves what each company's job site shows any visitor. Lever's other APIs need a customer's own key and read only that customer's data. You need only an Apify account.
 
 ### How do I run it from Python or an AI agent?
 
@@ -156,7 +189,7 @@ Through the Apify API, with your Apify token:
 from apify_client import ApifyClient
 
 client = ApifyClient("<YOUR_APIFY_TOKEN>")
-run = client.actor("anshumanatrey/deel-jobs-search").call(run_input={"searchTerms": ["software engineer"]})
+run = client.actor("anshumanatrey/lever-jobs-search").call(run_input={"searchTerms": ["software engineer"]})
 for row in client.dataset(run["defaultDatasetId"]).iterate_items():
     print(row["title"], row["company"], row["location"], row["salary"], row["jobUrl"])
 ```
@@ -173,13 +206,19 @@ It reads public job postings. You are responsible for how you use the data, incl
 
 ## Limitations
 
-- Deel is a small ATS: about 1,300 open jobs, and Deel and Klarna hold a quarter of them. For a wide search across many employers, use a multi-ATS actor or a bigger platform.
-- Pay has no period, and about two thirds of jobs show no pay.
+- Every search reads every job site, so a keyword takes about as long as the empty form, and every run pays the run start.
+- Jobgether's copies of one job per country fill the newest results of searches for tech roles (see above), and there is no field yet to leave one company out.
+- Jobs stay open for years: 21.9% of the open jobs on 2026-11-02 were created more than a year before.
+- The job type is empty on 18% of jobs, where the company's words name no single type, and the work type on 0.5%.
+- Pay is on 33% of jobs (47.5% of US jobs).
+- `country` and `countryCode` belong to the job's main place; `otherLocations` lists the others as text (8.5% of jobs name more than one place).
+- Lever answers a closed job and a job ID that never existed the same way, so both come back closed.
+- Lever reads job site names in their own case (jobs.lever.co/AIFund answers, /aifund does not). Names on the list are found in any case; others are tried as typed and in lower case.
+- A few companies leave test postings open on their real job site, such as "Test Job": 11 of 73,782 jobs on 2026-11-02, and they come back like any other.
+- A job a company posts twice at the same place is delivered once (2,700 such copies on 2026-11-02).
 - Titles and descriptions come in the company's own language.
-- A job can list dozens of countries: the first is `location`, the rest are in `otherLocations`.
-- Some postings are open applications, such as "Work With Us", because Deel lists them as jobs.
-- The same job on a copied career page is delivered once, matched by company, title and place.
-- The list of career pages was built on 2026-10-30. A company that joined later is searched only when you name it.
+- A job site Lever does not answer after the retries is listed in the `OUTPUT` record (`boardsWithErrors`); when no job site could be read at all, the run fails with the reason.
+- The list of job sites was built on 2026-11-02. A company that joined later is searched only when you name it.
 
 ## Who maintains it?
 
@@ -189,17 +228,21 @@ Built and maintained by **Anshuman Atrey** ([@AnshumanAtrey](https://github.com/
 
 | Actor | Use case |
 |---|---|
-| [ashby-jobs-search](https://apify.com/anshumanatrey/ashby-jobs-search) | Every job on every Ashby board, searched live |
-| [workday-job-search](https://apify.com/anshumanatrey/workday-job-search) | Every job at 1,688 Workday employers, searched live |
-| [cornerstone-jobs-search](https://apify.com/anshumanatrey/cornerstone-jobs-search) | Every job on every Cornerstone career site |
+| [ashby-jobs-search](https://apify.com/anshumanatrey/ashby-jobs-search) | Jobs on Ashby job boards, searched live |
+| [workday-job-search](https://apify.com/anshumanatrey/workday-job-search) | Jobs at Workday employers, searched live |
+| [cornerstone-jobs-search](https://apify.com/anshumanatrey/cornerstone-jobs-search) | Jobs on Cornerstone career sites |
+| [deel-jobs-search](https://apify.com/anshumanatrey/deel-jobs-search) | Jobs on Deel ATS career pages, with pay |
+| [greenhouse-jobs-search](https://apify.com/anshumanatrey/greenhouse-jobs-search) | Jobs on Greenhouse job boards, searched live |
+| [smartrecruiters-jobs-search](https://apify.com/anshumanatrey/smartrecruiters-jobs-search) | Jobs at SmartRecruiters companies, searched live |
+| [workable-job-search](https://apify.com/anshumanatrey/workable-job-search) | Jobs on Workable career pages, searched live |
 | [linkedin-harvester](https://apify.com/anshumanatrey/linkedin-harvester) | Email to LinkedIn profile, for the people behind a company |
 
 ## Documentation
 
-- Apify Store: https://apify.com/anshumanatrey/deel-jobs-search
-- GitHub repo: https://github.com/AnshumanAtrey/deel-jobs-search (MIT license, see [LICENSE](LICENSE))
+- Apify Store: https://apify.com/anshumanatrey/lever-jobs-search
+- GitHub repo: https://github.com/AnshumanAtrey/lever-jobs-search (MIT license, see [LICENSE](LICENSE))
 - The engine behind it: https://github.com/AnshumanAtrey/ats-jobs-engine
 
 ## Last updated
 
-2026-10-30 (version 1.0)
+2026-11-03 (version 1.0)
