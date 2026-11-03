@@ -163,9 +163,6 @@
             "editor": "stringList",
             "description": "Paste Lever job links to check whether they are still open, one per line, instead of searching. Each link comes back open with the job, closed, or not found. Links on jobs.lever.co and jobs.eu.lever.co work, with or without /apply. When no link can be read, the run searches instead and says so.",
             "placeholderValue": "https://jobs.lever.co/palantir/5168e8fd-fec1-4fea-b7a1-81bdaea65850",
-            "example": [
-                "https://jobs.lever.co/palantir/5168e8fd-fec1-4fea-b7a1-81bdaea65850"
-            ],
             "default": [],
             "sectionCaption": "Check job links",
             "nullable": true
