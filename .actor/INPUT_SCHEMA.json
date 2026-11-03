@@ -1,6 +1,6 @@
 {
     "title": "Lever Jobs Search",
-    "description": "Type a job title and press Start: you get the newest matching jobs from 2,300+ companies on Lever (73,000+ open jobs). Every other field is optional. Press Start with the form empty for the newest jobs of every kind.",
+    "description": "Type a job title and press Start: you get the newest matching jobs from 2,300+ companies on Lever (76,000+ open jobs). Every other field is optional. Press Start with the form empty for the newest jobs of every kind.",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
@@ -56,7 +56,7 @@
             "title": "Posted in the last (postedWithin)",
             "type": "string",
             "editor": "select",
-            "description": "Pick how new the jobs must be: posted in the last 24 hours, 3 days, 7 days or 30 days. Any time, the default, keeps every open job, newest first. The date is when the job was created on Lever, and a fifth of open jobs are over a year old. You can also type your own period, such as 48 hours or 2 weeks.",
+            "description": "Pick how new the jobs must be: posted in the last 24 hours, 3 days, 7 days or 30 days. Any time, the default, keeps every open job, newest first. The date is when the job was created on Lever, and almost a quarter of open jobs are over a year old. You can also type your own period, such as 48 hours or 2 weeks.",
             "enumSuggestedValues": [
                 "24 hours",
                 "3 days",

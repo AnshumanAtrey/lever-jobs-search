@@ -4,7 +4,7 @@
 
 ## Summary
 
-Lever Jobs Search is an Apify actor that searches the Lever job sites of 2,300+ companies (jobs.lever.co and jobs.eu.lever.co) at once and returns one row per job, newest first: title, company, location, remote or onsite, job type, department, team, salary with its period, posting date and link. It covers 2,396 job sites of 2,392 companies, which held 73,782 open jobs at 2,057 companies in 140 countries on 2026-11-02, including Palantir, Shield AI, Veeva Systems, Gopuff, Lyra Health, Zoox and Spotify. It reads the public Lever Postings API live at run time with no login and no API key. A third of the jobs publish pay (almost half of the US jobs), and the pay comes with every row, with the period Lever states.
+Lever Jobs Search is an Apify actor that searches the Lever job sites of 2,300+ companies (jobs.lever.co and jobs.eu.lever.co) at once and returns one row per job, newest first: title, company, location, remote or onsite, job type, department, team, salary with its period, posting date and link. It covers 2,396 job sites of 2,392 companies, which held 76,330 open jobs at 2,056 companies in 140 countries on 2026-11-03, including Palantir, Shield AI, Veeva Systems, Gopuff, Lyra Health, Zoox and Spotify. It reads the public Lever Postings API live at run time with no login and no API key. A third of the jobs publish pay (almost half of the US jobs), and the pay comes with every row, with the period Lever states.
 
 Store: https://apify.com/anshumanatrey/lever-jobs-search
 Source: https://github.com/AnshumanAtrey/lever-jobs-search
@@ -49,7 +49,7 @@ Typical costs (Free and Starter price, default memory):
 - 100 newest jobs: $0.23
 - 100 jobs with full details: $0.24
 - 1,000 jobs: $2.21
-- Every job on the list, 73,782 on 2026-11-02: $162.33
+- Every job on the list, 76,330 on 2026-11-03: $167.94
 
 Lever has no search, so every search reads all 2,396 job sites, about 81 MB, whatever it finds; the run start pays for that read.
 
@@ -65,7 +65,7 @@ Lever has no search, so every search reads all 2,396 job sites, about 81 MB, wha
 
 - The user needs jobs from companies on another applicant tracking system: use greenhouse-jobs-search, ashby-jobs-search, workday-job-search or a multi-ATS actor.
 - The user needs a fast search across every company: each search reads all 2,396 job sites.
-- The user wants one row per job opening when a company posts a copy per country: Jobgether posts one per country, 5% of the jobs on 2026-11-02.
+- The user wants one row per job opening when a company posts a copy per country: Jobgether posts one per country, 5.6% of the jobs on 2026-11-03 but most of the newest ones.
 
 ## Sample input
 
@@ -80,7 +80,7 @@ Lever has no search, so every search reads all 2,396 job sites, about 81 MB, wha
 
 ## Sample output (one record)
 
-TODO_DEPLOYED: the same row as the README's JSON row, from the deployed build's example run. Until then, a row from a local run of the engine on 2026-11-02:
+TODO_DEPLOYED: the same row as the README's JSON row, from the deployed build's example run. Until then, a row from a local run of the engine (v0.4.0) on 2026-11-03:
 
 ```json
 {
@@ -100,14 +100,14 @@ TODO_DEPLOYED: the same row as the README's JSON row, from the deployed build's 
   "platform": "lever",
   "companySlug": "shieldai",
   "jobId": "82e0ffd1-3887-4253-b458-00f39e0a387f",
-  "checkedAt": "2026-11-02T23:11:48+00:00"
+  "checkedAt": "2026-11-03T08:48:56+00:00"
 }
 ```
 
 ## Differentiators vs alternatives
 
-- vs fantastic-jobs/lever-co-jobs-api ($0.0025 per job; $0.002, $0.0012 and $0.0008 on paid plans): a stored database of Lever jobs posted in the last 6 months, with fields added by AI; this actor reads every job site live, so it also returns the open jobs created earlier (34% of them on 2026-11-02), and costs less on the free plan.
-- vs yugenox/ats-jobs-search ($0.002 per job, no start fee): cheaper, and reads Greenhouse and Ashby too; this actor is made for Lever alone, with Lever's EU sites, pay periods and job types read from Lever's own fields.
+- vs fantastic-jobs/lever-co-jobs-api ($0.0025 per job; $0.002, $0.0012 and $0.0008 on paid plans): a stored database of Lever jobs posted in the last 6 months, with fields added by AI; this actor reads every job site live, so it also returns the open jobs created earlier (35.5% of them on 2026-11-03), and costs less per job on the free plan (with the run start, runs of 34 jobs or more cost less).
+- vs yugenox/ats-jobs-search ($0.002 per job, no start fee): cheaper, gives pay periods and job types too, and reads Greenhouse and Ashby as well; when a search finds few jobs per board it stops after the largest boards (at least the 500 largest, by its own page), while this actor reads all 2,396 Lever job sites on every search, Lever's 85 EU sites included.
 - vs bovi/greenhouse-lever-ashby-job-scraper ($0.0015 per job): cheaper per job, but it reads only the companies you name or its curated preset lists; this actor searches all 2,396 job sites on its list at once.
 - vs fantastic-jobs/career-site-job-listing-api ($0.012 per job, $0.01 start): many more platforms from a stored database; this actor costs less per job and reads Lever live.
 

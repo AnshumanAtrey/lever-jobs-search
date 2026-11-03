@@ -2,7 +2,7 @@
     "actorSpecification": 1,
     "name": "lever-jobs-search",
     "title": "Lever Jobs Scraper & API - Salary, Remote, Last 24 Hours",
-    "description": "Lever jobs scraper and API for 2,300+ companies on jobs.lever.co, searched live by job title, location, remote, job type and posting date, newest first. 73,000+ open jobs, salary with its period on a third of them, no Lever API key. The site:jobs.lever.co dork done at the source.",
+    "description": "Lever jobs scraper and API for 2,300+ companies on jobs.lever.co, searched live by job title, location, remote, job type and posting date, newest first. 76,000+ open jobs, salary with its period on a third of them, no Lever API key. The site:jobs.lever.co dork done at the source.",
     "version": "1.0",
     "buildTag": "latest",
     "categories": [
@@ -57,7 +57,7 @@
                             "null"
                         ],
                         "title": "Other locations (otherLocations)",
-                        "description": "Every other place the company listed for the job; 8.5% of jobs name more than one.",
+                        "description": "Every other place the company listed for the job; 8.2% of jobs name more than one.",
                         "example": [
                             "San Mateo, California"
                         ],
@@ -80,7 +80,7 @@
                             "null"
                         ],
                         "title": "Job type (employmentType)",
-                        "description": "full-time, part-time, contract, intern or temporary, read from the company's own job type words on Lever (such as Full-time, CDI or Contract: Part-Time). Empty when the words name no single type, such as Full-time or Part-time: 18% of jobs.",
+                        "description": "full-time, part-time, contract, intern or temporary, read from the company's own job type words on Lever (such as Full-time, CDI or Contract: Part-Time). Empty when the company gave no job type words or words that name no single type, such as Full-time or Part-time: 18% of jobs.",
                         "example": "full-time"
                     },
                     "department": {
@@ -89,7 +89,7 @@
                             "null"
                         ],
                         "title": "Hiring department (department)",
-                        "description": "The department the job is in, as the company set it on Lever (70% of jobs).",
+                        "description": "The department the job is in, as the company set it on Lever (71% of jobs).",
                         "example": "Pricing & Underwriting"
                     },
                     "team": {
@@ -155,7 +155,7 @@
                             "null"
                         ],
                         "title": "Lever job site (companySlug)",
-                        "description": "The Lever job site: the name in its address, as palantir in jobs.lever.co/palantir. Its capitals matter. A site on Lever's EU host (jobs.eu.lever.co) ends in /eu.",
+                        "description": "The Lever job site: the name in its address, as palantir in jobs.lever.co/palantir. Its capitals matter. A site on Lever's EU host (jobs.eu.lever.co) ends in /eu, except on a checked job link typed with jobs.lever.co.",
                         "example": "prima/eu"
                     },
                     "jobId": {
@@ -224,7 +224,7 @@
                             "null"
                         ],
                         "title": "Pay period (salaryPeriod)",
-                        "description": "With details on: what the pay is per, as Lever states it: year, month, week, day or hour. Empty for pay every two weeks, twice a month or one time (the salary text says which) and when there is no pay; never guessed.",
+                        "description": "With details on: what the pay is per, as Lever states it: year, month, week, day or hour. Empty for pay every two weeks, twice a month, every two months or one time (the salary text says which) and when there is no pay; never guessed.",
                         "example": "year"
                     },
                     "country": {
