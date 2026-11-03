@@ -212,6 +212,7 @@ It reads public job postings. You are responsible for how you use the data, incl
 - The job type is empty on 18% of jobs: 5% have no job type words and 13% have words that name no single type, such as Full-time or Part-time. The work type is empty on 0.6%.
 - Pay is on 33% of jobs (47.4% of US jobs).
 - `country` and `countryCode` belong to the job's main place; `otherLocations` lists the others as text (8.2% of jobs name more than one place).
+- Every job with full details (Number of jobs 0 with Full details on) is built in memory before it is saved: that run peaked at 2.9 GB in a local test on 2026-11-03, so give it 4 GB of memory instead of the default 2 GB.
 - Lever answers a closed job and a job ID that never existed the same way, so both come back closed.
 - Lever reads job site names in their own case (jobs.lever.co/AIFund answers, /aifund does not). Names on the list are found in any case; others are tried as typed and in lower case.
 - A typed company name is matched to the list whole and with its accents: Engel & Völkers is found, Engel & Volkers is not, and Hot Topic finds the hottopic site, not the stores listed as BoxLunch & Hot Topic. The name in the address (engelvoelkers, boxlunch) always works.
