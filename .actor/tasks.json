@@ -1,5 +1,5 @@
 {
-    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. TODO_DEPLOYED: options.memoryMbytes follows the default memory measured for store.json defaultRunOptions (2048 until then).",
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. options.memoryMbytes is the default memory measured on Apify for store.json defaultRunOptions: 2048 MB, about 1 minute for a search of every job site (runs yBoCIZDTtcAkjBI1E and FxhK3ledZa4kIpTMl, build 1.0.1, 2026-11-03).",
     "options": {
         "build": "latest",
         "memoryMbytes": 2048,

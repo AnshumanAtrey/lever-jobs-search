@@ -49,7 +49,7 @@ On paid Apify plans the job prices are 10% less on Scale ($0.00198 and $0.00207)
 | Every open Palantir job, 305 on 2026-11-03 | $0.68 |
 | Every job on the list, 76,330 on 2026-11-03 | $167.94 |
 
-Why a run start: Lever has no search, so every search reads all 2,396 job sites, about 81 MB, whatever it finds, and the run start pays for that read. Apify's free $5 monthly credit covers about 2,100 jobs in runs of 100. Number of jobs (`maxJobs`) and the run start set the most a run can cost, and a run stops at its spending limit with a message saying so.
+Why a run start: Lever has no search, so the run start covers the fixed work of reading all 2,396 job sites on every search, whatever it finds. Apify's free $5 monthly credit covers about 2,100 jobs in runs of 100. Number of jobs (`maxJobs`) and the run start set the most a run can cost, and a run stops at its spending limit with a message saying so.
 
 ## How does the price compare with other Lever scrapers?
 
@@ -107,7 +107,7 @@ Example input:
 
 ## What does the output look like?
 
-One row per job, newest first. These rows are from a local run of the actor's engine (v0.4.0) on 2026-11-03, searching every job site for software engineer: 2,022 jobs at 505 companies, the 100 newest saved; shown are rows 22, 24, 25, 28 and 73. 85 of the 100 were Jobgether's copies of 30 jobs, one per country, so the 100 rows held 45 different jobs (see Common questions). TODO_DEPLOYED: the rows, build number and seconds of the deployed build's example run go here.
+One row per job, newest first. These rows are from a run on 2026-11-03, build 1.0.1, searching every job site for software engineer in 58 seconds (run yBoCIZDTtcAkjBI1E): 2,022 jobs at 505 companies, the 100 newest saved; shown are rows 22, 24, 25, 28 and 73. 85 of the 100 were Jobgether's copies of 30 jobs, one per country, so the 100 rows held 45 different jobs (see Common questions).
 
 | Job title (`title`) | Company name (`company`) | Main location (`location`) | Remote or onsite (`workType`) | Pay summary (`salary`) | Posted on (`postedAt`) |
 |---|---|---|---|---|---|
@@ -137,7 +137,7 @@ One row as JSON:
   "platform": "lever",
   "companySlug": "shieldai",
   "jobId": "82e0ffd1-3887-4253-b458-00f39e0a387f",
-  "checkedAt": "2026-11-03T08:48:56+00:00"
+  "checkedAt": "2026-11-03T09:17:18+00:00"
 }
 ```
 
@@ -145,7 +145,7 @@ Full details add `description`, `descriptionHtml`, `salaryMin`, `salaryMax`, `sa
 
 ## How fast is it?
 
-TODO_DEPLOYED: the seconds of the empty form and of a keyword search at the default memory on the deployed build, with their run ids, go here. Lever's Postings API has no word search, no date filter and no sort, so every search reads all 2,396 job sites, one call each for all but the 4 biggest, and a keyword takes about as long as the empty form. Full details and matching descriptions add no requests, because Lever sends each description with the job list. Naming companies or checking links reads only those sites.
+About 1 minute at the default 2 GB of memory: the empty form took 57 seconds and a search for software engineer 58 seconds (build 1.0.1, runs FxhK3ledZa4kIpTMl and yBoCIZDTtcAkjBI1E, 2026-11-03). Lever's Postings API has no word search, no date filter and no sort, so every search reads all 2,396 job sites, one call each for all but the 4 biggest, and a keyword takes about as long as the empty form. Full details and matching descriptions add no requests, because Lever sends each description with the job list. Naming companies or checking links reads only those sites.
 
 ## Common questions
 
@@ -213,7 +213,6 @@ It reads public job postings. You are responsible for how you use the data, incl
 - Pay is on 33% of jobs (47.4% of US jobs).
 - `country` and `countryCode` belong to the job's main place; `otherLocations` lists the others as text (8.2% of jobs name more than one place).
 - A US place named after a country can match that country: on 2026-11-03 a search for Mexico also found 123 jobs in New Mexico, Panama 37 in Panama City, FL, Jordan 16 in South and West Jordan, Utah, and Lebanon 23 in US towns named Lebanon.
-- Every job with full details (Number of jobs 0 with Full details on) is built in memory before it is saved: that run peaked at 2.9 GB in a local test on 2026-11-03, so give it 4 GB of memory instead of the default 2 GB.
 - Lever answers a closed job and a job ID that never existed the same way, so both come back closed.
 - Lever reads job site names in their own case (jobs.lever.co/AIFund answers, /aifund does not). Names on the list are found in any case; others are tried as typed and in lower case.
 - A typed company name is matched to the list whole and with its accents: Engel & Völkers is found, Engel & Volkers is not, and Hot Topic finds the hottopic site, not the stores listed as BoxLunch & Hot Topic. The name in the address (engelvoelkers, boxlunch) always works.

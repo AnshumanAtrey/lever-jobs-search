@@ -27,7 +27,7 @@ Source: https://github.com/AnshumanAtrey/lever-jobs-search
 - Remote or onsite (workType): remote, hybrid or onsite, as the company set it on Lever.
 - Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
 - Number of jobs (maxJobs): 100 by default, 0 for every match.
-- Full details (includeDetails): adds the description as text and HTML, pay as numbers with its currency and period, country and country code. For every job with details (maxJobs 0), start the run with 4 GB of memory.
+- Full details (includeDetails): adds the description as text and HTML, pay as numbers with its currency and period, country and country code.
 - Leave out words (excludeTerms): drops jobs whose title has these words.
 - Job type (employmentType): full-time, part-time, contract, intern or temporary, where the company's own words name one.
 - Match descriptions (searchDescriptions): finds your words in the description too.
@@ -51,7 +51,7 @@ Typical costs (Free and Starter price, default memory):
 - 1,000 jobs: $2.21
 - Every job on the list, 76,330 on 2026-11-03: $167.94
 
-Lever has no search, so every search reads all 2,396 job sites, about 81 MB, whatever it finds; the run start pays for that read.
+Lever has no search, so the run start covers the fixed work of reading all 2,396 job sites on every search, whatever it finds.
 
 ## When to use
 
@@ -80,7 +80,7 @@ Lever has no search, so every search reads all 2,396 job sites, about 81 MB, wha
 
 ## Sample output (one record)
 
-TODO_DEPLOYED: the same row as the README's JSON row, from the deployed build's example run. Until then, a row from a local run of the engine (v0.4.0) on 2026-11-03:
+From a run of the example input on 2026-11-03, build 1.0.1 (run yBoCIZDTtcAkjBI1E):
 
 ```json
 {
@@ -100,7 +100,7 @@ TODO_DEPLOYED: the same row as the README's JSON row, from the deployed build's 
   "platform": "lever",
   "companySlug": "shieldai",
   "jobId": "82e0ffd1-3887-4253-b458-00f39e0a387f",
-  "checkedAt": "2026-11-03T08:48:56+00:00"
+  "checkedAt": "2026-11-03T09:17:18+00:00"
 }
 ```
 
