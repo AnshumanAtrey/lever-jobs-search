@@ -8,7 +8,7 @@
         ]
     },
     "actorPermissionLevel": "LIMITED_PERMISSIONS",
-    "isPublic": false,
+    "isPublic": true,
     "actorId": "YnZ84WFAg14SN10cT",
     "defaultRunOptions": {
         "build": "latest",
