@@ -39,7 +39,7 @@ Pay per event: $2.20 per 1,000 jobs, or $2.30 per 1,000 with full details, plus 
 | Job with details | $0.0023 | One saved job with full details on |
 | Run start | $0.005 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.01 at the default 2 GB |
 
-On paid Apify plans the job prices are 10% less on Scale ($0.00198 and $0.00207) and 20% less on Business and above ($0.00176 and $0.00184); the run start stays $0.005 per GB. The Store page shows that Business price, from $1.76 per 1,000 jobs, and leaves the run start out.
+The Store page header, "from $1.76 / 1,000 jobs", is the GOLD price: Apify's Store shows the lowest discount-tier price. FREE and BRONZE (Apify's Free and Starter plans) pay the base price, $0.0022 a job and $0.0023 with details; SILVER (Scale) pays 10% less, $0.00198 and $0.00207; GOLD (Business) and above pay 20% less, $0.00176 and $0.00184. The run start, $0.005 per GB of memory ($0.01 at the default 2 GB), is a flat fee on every plan, and the header never shows it.
 
 | Run (Free and Starter price, default memory) | Cost |
 |---|---|
@@ -151,7 +151,7 @@ About 1 to 1.5 minutes at the default 2 GB of memory. On 2026-11-03 the empty fo
 
 ### Which posting date does it use?
 
-The moment the job was created on Lever. Lever's own job page gives Google that day as its date posted (33 of 33 job pages checked on 19 sites agree), and this actor sorts and filters by it, to the second. Lever's XML feed carries a later time, which is not used. Jobs stay open for years: on 2026-11-03, 17,792 open jobs (23.3%) had been created more than a year before, the oldest in 2009, so pick Posted in the last to see only new ones.
+The actor's posting date (`postedAt`) is the moment the job was created on Lever. Lever's own job page gives Google that day as its date posted (33 of 33 job pages checked on 19 sites agree), and this actor sorts and filters by it, to the second. Lever's XML feed carries a later time, which is not used. Jobs stay open for years: on 2026-11-03, 17,792 open jobs (23.3%) had been created more than a year before, the oldest in 2009, so pick Posted in the last to see only new ones.
 
 ### Why does a keyword search take as long as an empty form?
 
@@ -159,7 +159,7 @@ The Lever Postings API answers with every open job of one job site, with no word
 
 ### Why does the same job show up in many countries?
 
-Some companies post one copy of a job per place. The biggest is Jobgether, a job-matching platform that posts jobs on Lever for the companies it shortlists candidates for, one copy per country: 4,298 of the 76,330 jobs (5.6%) on 2026-11-03, but because it posts many each day, it held 88 of the 100 newest jobs of any kind, 85 of the 100 newest software engineer jobs and 90 of the 100 newest product manager jobs that day. Each copy names a different place, so each is its own row, and there is no field yet to leave one company out.
+The same Lever job shows up in many countries because some companies post one copy of it per place. The biggest is Jobgether, a job-matching platform that posts jobs on Lever for the companies it shortlists candidates for, one copy per country: 4,298 of the 76,330 jobs (5.6%) on 2026-11-03, but because it posts many each day, it held 88 of the 100 newest jobs of any kind, 85 of the 100 newest software engineer jobs and 90 of the 100 newest product manager jobs that day. Each copy names a different place, so each is its own row, and there is no field yet to leave one company out.
 
 ### Why is the job type empty on some jobs?
 
@@ -171,35 +171,35 @@ Lever stores pay with its period, and the row shows it: per year on 15,379 jobs,
 
 ### What about Lever's EU job sites?
 
-Lever runs a separate EU instance, and its companies' job sites live only on jobs.eu.lever.co. 85 job sites on the list are EU sites, with 2,968 open jobs on 2026-11-03. Their job site name in `companySlug` ends in /eu, as in engelvoelkers/eu, and a jobs.lever.co link to one of them is found on the EU host too. One exception: a job link you paste to check, typed with jobs.lever.co, keeps the site name without /eu in `companySlug`, while its `jobUrl` is on jobs.eu.lever.co.
+The actor reads Lever's EU job sites too: Lever runs a separate EU instance, and its companies' job sites live only on jobs.eu.lever.co. 85 job sites on the list are EU sites, with 2,968 open jobs on 2026-11-03. Their job site name in `companySlug` ends in /eu, as in engelvoelkers/eu, and a jobs.lever.co link to one of them is found on the EU host too. One exception: a job link you paste to check, typed with jobs.lever.co, keeps the site name without /eu in `companySlug`, while its `jobUrl` is on jobs.eu.lever.co.
 
 ### How does it find every company?
 
-Lever has no public list of its customers, so the list is built the way the `site:jobs.lever.co` dork works, from the web's own memory: the Wayback Machine's index of both hosts, Common Crawl's index, freehire's public job API and 11 company and job lists on GitHub gave 9,431 candidate names, each checked live with Lever's API. 2,396 job sites answer and their job pages open; left out are 467 sites whose job pages all answer 404 (their 1,412 links would be dead) and 12 demo and test sites. Of the job sites on the list, the Wayback Machine names 93%, Common Crawl 83%, the GitHub lists 75% and freehire 69%. An estimate from how often the sources overlap puts the job sites they can see at 2,468 or more, so the list holds at most about 97% of them; Lever's vendor listings say over 5,000 companies use it, and an account needs no public job site. To search a company that is not on the list, paste its link or type its name into Only these companies.
+Lever has no public list of its customers, so the actor's list of job sites is built the way the `site:jobs.lever.co` dork works, from the web's own memory: the Wayback Machine's index of both hosts, Common Crawl's index, freehire's public job API and 11 company and job lists on GitHub gave 9,431 candidate names, each checked live with Lever's API. 2,396 job sites answer and their job pages open; left out are 467 sites whose job pages all answer 404 (their 1,412 links would be dead) and 12 demo and test sites. Of the job sites on the list, the Wayback Machine names 93%, Common Crawl 83%, the GitHub lists 75% and freehire 69%. An estimate from how often the sources overlap puts the job sites they can see at 2,468 or more, so the list holds at most about 97% of them; Lever's vendor listings say over 5,000 companies use it, and an account needs no public job site. To search a company that is not on the list, paste its link or type its name into Only these companies.
 
 ### Does it need a login or an API key?
 
-No. The Lever Postings API is public and documented (github.com/lever/postings-api): it serves what each company's job site shows any visitor. Lever's other APIs need a customer's own key and read only that customer's data. You need only an Apify account.
+The actor needs no login and no API key. The Lever Postings API is public and documented (github.com/lever/postings-api): it serves what each company's job site shows any visitor. Lever's other APIs need a customer's own key and read only that customer's data. You need only an Apify account.
 
 ### Does it work on Apify's free plan?
 
-Yes. Apify's free $5 monthly credit pays for about 2,100 jobs in runs of 100, at $0.23 a run with the run start at the default 2 GB.
+The actor works on Apify's free plan: the free $5 monthly credit pays for about 2,100 jobs in runs of 100, at $0.23 a run with the run start at the default 2 GB.
 
 ### How often should I run it?
 
-Once a day keeps a feed fresh: set Posted in the last (`postedWithin`) to 24 hours and Number of jobs (`maxJobs`) to 0 to get every job created that day. Jobs stay open for years on Lever, so the date filter is what keeps a feed to new jobs. Set the run up under Schedules in Apify Console, and match rows on `jobId` to skip jobs you already have.
+Running the actor once a day keeps a Lever job feed fresh: set Posted in the last (`postedWithin`) to 24 hours and Number of jobs (`maxJobs`) to 0 to get every job created that day. Jobs stay open for years on Lever, so the date filter is what keeps a feed to new jobs. Set the run up under Schedules in Apify Console, and match rows on `jobId` to skip jobs you already have.
 
 ### How do I get every job of one company?
 
-Type its name in Only these companies (`companies`), such as Palantir, the name in its address (palantir) or its Lever link, and set Number of jobs (`maxJobs`) to 0. Only that job site is read: every open Palantir job, 305 on 2026-11-03, comes to $0.68. A company that is not on the list is tried by its name on Lever's global and EU sites, and its link always works.
+To get every job of one Lever company, type its name in Only these companies (`companies`), such as Palantir, the name in its address (palantir) or its Lever link, and set Number of jobs (`maxJobs`) to 0. Only that job site is read: every open Palantir job, 305 on 2026-11-03, comes to $0.68. A company that is not on the list is tried by its name on Lever's global and EU sites, and its link always works.
 
 ### How do I check a list of job links?
 
-Paste the links into Job links to check (`jobUrls`), one per line, instead of searching: links on jobs.lever.co and jobs.eu.lever.co work, with or without /apply. Each link comes back as one row, open with the job's fields, or closed or not found with its link, so 10 links come to $0.032 with the run start at the default 2 GB. Lever answers a closed job and a job ID that never existed the same way, so both come back closed.
+To check Lever job links, paste them into Job links to check (`jobUrls`), one per line, instead of searching: links on jobs.lever.co and jobs.eu.lever.co work, with or without /apply. Each link comes back as one row, open with the job's fields, or closed or not found with its link, so 10 links come to $0.032 with the run start at the default 2 GB. Lever answers a closed job and a job ID that never existed the same way, so both come back closed.
 
 ### How do I call it from the API, Python, JavaScript, n8n or an AI agent?
 
-Each way uses your Apify token (Apify Console, Settings, API & Integrations) and takes the input as JSON, with the field names above.
+Calling the actor from the Apify API, Python, JavaScript, n8n, Make or an AI agent takes your Apify token (Apify Console, Settings, API & Integrations) and the input as JSON, with the field names above.
 
 **API.** One call runs the actor and returns its rows. Apify stops that wait after 300 seconds: a search of every job site takes about 1 to 1.5 minutes, inside it, but for a bigger run, such as every job (`maxJobs` 0), use a client below, which waits until the run ends.
 
@@ -238,11 +238,11 @@ for (const row of items) console.log(row.title, row.company, row.location, row.s
 
 ### Am I charged for closed jobs?
 
-A search returns open jobs only. A pasted link that turns out closed or not found is one Job row, because it was checked and answered.
+A closed job is charged only when you paste its link to check: a search returns open jobs only, and a pasted link that turns out closed or not found is one Job row, because it was checked and answered.
 
 ### Is it legal to use?
 
-It reads public job postings. You are responsible for how you use the data, including each site's terms and the privacy laws that apply to you.
+The actor reads public job postings. You are responsible for how you use the data, including each site's terms and the privacy laws that apply to you.
 
 ## Limitations
 
