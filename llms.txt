@@ -27,7 +27,7 @@ Source: https://github.com/AnshumanAtrey/lever-jobs-search
 - Remote or onsite (workType): remote, hybrid or onsite, as the company set it on Lever.
 - Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
 - Number of jobs (maxJobs): 100 by default, 0 for every match.
-- Full details (includeDetails): adds the description as text and HTML, pay as numbers with its currency and period, country and country code.
+- Full details (includeDetails): adds the description as text and HTML, pay as numbers with its currency and period, country and country code. For every job with details (maxJobs 0), start the run with 4 GB of memory.
 - Leave out words (excludeTerms): drops jobs whose title has these words.
 - Job type (employmentType): full-time, part-time, contract, intern or temporary, where the company's own words name one.
 - Match descriptions (searchDescriptions): finds your words in the description too.
