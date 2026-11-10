@@ -1,5 +1,5 @@
 {
-    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. options.memoryMbytes is the default memory measured on Apify for store.json defaultRunOptions: 2048 MB, about 1 minute for a search of every job site (runs yBoCIZDTtcAkjBI1E and FxhK3ledZa4kIpTMl, build 1.0.1, 2026-11-03).",
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. options.memoryMbytes is the default memory measured on Apify for store.json defaultRunOptions: 2048 MB, about 1 minute for a search of every job site (runs yBoCIZDTtcAkjBI1E and FxhK3ledZa4kIpTMl, build 1.0.1, 2026-11-03). Tasks marked publish false stay saved but off the Store: the account publishes at most 100 pages across all actors, so each actor keeps 2 or more by its earnings and search traffic (2026-11-11).",
     "options": {
         "build": "latest",
         "memoryMbytes": 2048,
@@ -8,6 +8,7 @@
     "tasks": [
         {
             "name": "lever-jobs-last-24-hours",
+            "publish": false,
             "title": "Find the newest Lever jobs posted in the last 24 hours",
             "description": "Get the 100 newest jobs that companies created on Lever in the last day, with the company, location, pay when shown, and link. Set Number of jobs to 0 to get every one, and schedule it daily for a fresh feed of new jobs.",
             "input": {
@@ -36,6 +37,7 @@
         },
         {
             "name": "remote-jobs-on-lever",
+            "publish": false,
             "title": "Find remote jobs on Lever job sites",
             "description": "Get the newest remote jobs from 2,300+ companies on Lever, with the company, location, pay when shown, posting date and link. Remote is the workplace type the company set on Lever.",
             "input": {
@@ -67,6 +69,7 @@
         },
         {
             "name": "software-engineer-jobs-lever",
+            "publish": false,
             "title": "Find software engineer jobs on Lever job sites",
             "description": "Search 2,300+ companies on Lever for software engineer jobs at once and get the 100 newest, with the company, location, pay when shown, posting date and link.",
             "input": {
@@ -97,6 +100,7 @@
         },
         {
             "name": "sales-jobs-europe-lever",
+            "publish": false,
             "title": "Find sales jobs in Europe on Lever job sites",
             "description": "Get the newest sales and account executive jobs in Europe from 2,300+ companies on Lever, with the company, location, pay when shown and link. Europe finds jobs in its 51 countries, jobs posted for the region and jobs open worldwide.",
             "input": {
@@ -130,6 +134,7 @@
         },
         {
             "name": "lever-jobs-with-descriptions",
+            "publish": false,
             "title": "Get Lever jobs with full descriptions and country",
             "description": "Get the newest jobs on Lever with full details: the description as text and HTML, the country and country code, and pay as numbers with its currency and period where the company publishes it (a third of jobs). Ready for a job board or an AI agent.",
             "input": {
@@ -187,6 +192,7 @@
         },
         {
             "name": "internships-on-lever",
+            "publish": false,
             "title": "Find internships on Lever job sites",
             "description": "Get the newest internships from 2,300+ companies on Lever, read from each company's own job type words, with the company, location, pay when shown, posting date and link.",
             "input": {
