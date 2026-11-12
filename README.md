@@ -4,6 +4,13 @@ Lever jobs scraper and API: search the job sites of 2,300+ companies on Lever (j
 
 Use it as a Lever jobs API with no Lever API key, a jobs.lever.co scraper or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. It reads the public Lever Postings API and is the `site:jobs.lever.co` Google dork done at the source, with the fields a search result cannot give you. Available as an [Apify Actor](https://apify.com/anshumanatrey/lever-jobs-search). $0.0022 per job, $0.0023 with full details, $0.01 per run start at the default memory, no login, no API key.
 
+**Use it from an AI assistant:**
+
+- **Claude** (claude.ai and the desktop app): [Add Lever Jobs to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Lever%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Flever-jobs-search), click Continue, sign in to Apify, Allow, and ask in plain words.
+- **Claude Code:** `claude mcp add --transport http lever-jobs-search "https://mcp.apify.com?tools=anshumanatrey/lever-jobs-search"`, then run `/mcp` to sign in to Apify.
+- **Codex:** `codex mcp add lever-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/lever-jobs-search"`, then `codex mcp login lever-jobs-search`.
+- **Any other MCP client:** `https://mcp.apify.com?tools=anshumanatrey/lever-jobs-search`, signed in with Apify or an `Authorization: Bearer <APIFY_TOKEN>` header.
+
 ## What does it do?
 
 - **Searches 2,396 Lever job sites of 2,392 companies at once.** On 2026-11-03 they held 76,330 open jobs at 2,056 companies in 140 countries, at employers such as Palantir, Shield AI, Veeva Systems, Gopuff, Lyra Health, Zoox, Spotify, Engel & Völkers and Paytm.
